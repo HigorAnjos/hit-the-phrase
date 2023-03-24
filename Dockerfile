@@ -1,6 +1,6 @@
-FROM node:16 as frontend
+FROM node:16 as backend
 WORKDIR /app
 COPY . .
 RUN npm install
-EXPOSE 3000
+EXPOSE 3001
 CMD ["npm", "start"]
