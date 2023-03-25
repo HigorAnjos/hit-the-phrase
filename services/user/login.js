@@ -8,12 +8,12 @@ const login = async (email, userInsertedPassword) => {
     return false;
   }
 
-  const isCorret = await bcrypt.compare(userInsertedPassword, userFound.dataValues.password);
+  const isCorret = await bcrypt.compare(userInsertedPassword, userFound.senha);
   if (!isCorret) {
     return false;
   }
 
-  return userFound.dataValues;
+  return userFound;
 };
 
 module.exports = login;
