@@ -7,5 +7,6 @@ const {
 const router = express.Router({ mergeParams: true });
 
 router.post('/login', login);
+router.post('/create', create);
 
 module.exports = router;
