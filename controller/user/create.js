@@ -2,10 +2,9 @@ const bcrypt = require('bcrypt');
 const services = require('../../services/user/index');
 
 const create = async (req, res) => {
-  const { name, email, password } = req.body;
-  console.log('services', services);
+  const { name, email, password, date } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !date) {
     return res.status(400).json({
       message: 'Dados incompletos',
     });
@@ -14,9 +13,7 @@ const create = async (req, res) => {
   const passwordCrypt = await bcrypt.hash(password, 10);
 
   // create user
-  const isOk = await services.create(name, email, passwordCrypt);
-
-  console.log('isOk', isOk);
+  const isOk = await services.create(name, email, passwordCrypt, date);
 
   if (!isOk) {
     return res.status(400).json({
