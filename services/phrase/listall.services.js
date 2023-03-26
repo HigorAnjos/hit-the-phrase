@@ -11,13 +11,25 @@ const listall = async () => {
     return false;
   }
 
-  const phrasesWithTypesAndCategories = phrases.map((phrase) => ({
-    id: phrase.idFrases,
-    phrase: phrase.frase,
-    points: phrase.ponto,
-    type: types.find((type) => (type.idTipos === phrase.tipo ? type.tipos : '')),
-    category: categories.find((category) => (category.idCategorias === phrase.categoria ? category.categoria : '')),
-  }));
+  const phrasesWithTypesAndCategories = phrases.map((phrase) => {
+    const phraseType = types.find((type) => type.idTipos === phrase.tipo);
+    // eslint-disable-next-line max-len
+    const phraseCategory = categories.find((category) => category.idCategorias === phrase.categoria);
+
+    return {
+      id: phrase.idFrases,
+      phrase: phrase.frase,
+      points: phrase.ponto,
+      type: {
+        id: phraseType.idTipos,
+        name: phraseType.tipos,
+      },
+      category: {
+        id: phraseCategory.idCategorias,
+        name: phraseCategory.categoria,
+      },
+    };
+  });
 
   return phrasesWithTypesAndCategories;
 };
