@@ -2,7 +2,9 @@ const bcrypt = require('bcrypt');
 const services = require('../../services/user/index');
 
 const create = async (req, res) => {
-  const { name, email, password, date } = req.body;
+  const {
+    name, email, password, date,
+  } = req.body;
 
   if (!name || !email || !password || !date) {
     return res.status(400).json({
