@@ -3,9 +3,11 @@ const services = require('../../services/user/index');
 
 const update = async (req, res) => {
   const { id: userId } = req.user;
-  const { name, email, password } = req.body;
+  const {
+    name, email, password, date,
+  } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !date) {
     return res.status(400).json({
       message: 'Dados incompletos para atualizar',
     });
@@ -13,7 +15,7 @@ const update = async (req, res) => {
 
   const passwordHash = await bcrypt.hash(password, 5);
 
-  const userUpdated = await services.update(name, email, passwordHash, userId);
+  const userUpdated = await services.update(name, email, passwordHash, userId, date);
 
   if (!userUpdated) {
     return res.status(400).json({ message: 'Não foi possivel atualizar o usuário' });
