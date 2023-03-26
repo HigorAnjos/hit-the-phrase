@@ -5,6 +5,7 @@ const swaggerConfig = require('../docs/swagger.config');
 
 require('express-async-errors');
 const user = require('./user');
+const phrase = require('./phrase');
 
 const root = express.Router({ mergeParams: true });
 
@@ -15,6 +16,14 @@ const root = express.Router({ mergeParams: true });
  *    description: Rotas de usuario
  */
 root.use('/user', user);
+
+/**
+ * @swagger
+ *  tags:
+ *    name: Phrase
+ *    description: Rotas de frases
+ */
+root.use('/phrase', phrase);
 
 const swaggerDoc = swaggerJSDoc(swaggerConfig);
 root.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
