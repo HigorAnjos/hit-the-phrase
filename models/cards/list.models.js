@@ -9,7 +9,19 @@ const list = async (id) => {
     return false;
   }
 
-  return phrases;
+  return phrases.map((phrase) => ({
+    id: phrase.idFrases,
+    phrase: phrase.frase,
+    point: phrase.ponto,
+    category: {
+      id: phrase.idCategorias,
+      name: phrase.categoria,
+    },
+    type: {
+      id: phrase.idTipos,
+      name: phrase.tipos,
+    },
+  }));
 };
 
 module.exports = list;
