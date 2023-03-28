@@ -6,7 +6,7 @@ const create = async (req, res) => {
     name, email, password, date,
   } = req.body;
 
-  if (!name || !email || !password || !date) {
+  if (!name || !email || !password) {
     return res.status(400).json({
       message: 'Dados incompletos',
     });
