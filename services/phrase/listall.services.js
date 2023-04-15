@@ -14,7 +14,7 @@ const listall = async () => {
   const phrasesWithTypesAndCategories = phrases.map((phrase) => {
     const phraseType = types.find((type) => type.idTipos === phrase.tipo);
     // eslint-disable-next-line max-len
-    const phraseCategory = categories.find((category) => category.idCategorias === phrase.categoria);
+    const phraseCategory = categories.find((category) => category.id === phrase.categoria);
 
     return {
       id: phrase.idFrases,
@@ -25,8 +25,9 @@ const listall = async () => {
         name: phraseType.tipos,
       },
       category: {
-        id: phraseCategory.idCategorias,
-        name: phraseCategory.categoria,
+        id: phraseCategory.id,
+        name: phraseCategory.category,
+        createdAt: phraseCategory.createdAt,
       },
     };
   });
