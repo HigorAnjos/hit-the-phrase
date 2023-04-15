@@ -2,13 +2,11 @@ const services = require('../../services/cards/index.services');
 
 const list = async (req, res) => {
   const { id } = req.user;
-  const {
-    phrases
-  } = req.body;
+  const phrases = req.body;
 
-  await services.newphrase(...phrases, id)
+  await services.newphrase(id, ...phrases);
 
-  return res.status(200).json(phrases);
+  return res.status(201).json('ok');
 };
 
 module.exports = list;

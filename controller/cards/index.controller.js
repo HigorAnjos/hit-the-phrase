@@ -3,5 +3,5 @@ const newphrase = require('./newphrase.controller');
 
 module.exports = {
   list,
-  newphrase
+  newphrase,
 };
