@@ -10,9 +10,9 @@ const create = async (name, email, password, date) => {
     }
   }
 
-  if (!date) {
-    date = new Date();
-  }
+  // if (!date) {
+  //   date = new Date();
+  // }
 
   const newUserId = await models.create(name, email, password, date);
 
