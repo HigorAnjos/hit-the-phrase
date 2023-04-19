@@ -6,7 +6,7 @@ const list = async (req, res) => {
 
   await services.newphrase(id, ...phrases);
 
-  return res.status(201).json('ok');
+  return res.status(201).send();
 };
 
 module.exports = list;

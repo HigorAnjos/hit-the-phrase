@@ -31,6 +31,7 @@ const login = async (req, res) => {
     id: userCanLogin.idUsuarios,
     email: userCanLogin.email,
     name: userCanLogin.nome,
+    dateOfBirth: userCanLogin.nascimento,
   };
 
   const token = jwt.sign({ data: userWithoutPassword }, API_SECRET, JWT_CONFIG);
