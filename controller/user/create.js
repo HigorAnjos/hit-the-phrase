@@ -22,7 +22,8 @@ const create = async (req, res) => {
       message: 'Erro ao criar usuário',
     });
   }
-
+  // eslint-disable-next-line no-console
+  console.log(`requret from ${name}`);
   return res.status(201).json({ id: isOk });
 };
 
