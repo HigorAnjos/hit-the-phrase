@@ -8,6 +8,6 @@ const {
 const router = express.Router({ mergeParams: true });
 
 router.get('/list', auth, list);
-router.post('/newphrase', auth, newphrase);
+router.post('/phrase', auth, newphrase);
 
 module.exports = router;
