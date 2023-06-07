@@ -1,20 +1,18 @@
 const models = require('../../models/user');
 const emitter = require('../events/emitter');
 
-const create = async (name, email, password, date) => {
+const create = async (newUser) => {
+  const { email } = newUser;
+
   const userHasTheSameEmailFound = await models.find(email);
 
   if (userHasTheSameEmailFound) {
     if (userHasTheSameEmailFound.email === email) {
-      return null; // email ja cadastrado
+      return null; // email já cadastrado
     }
   }
 
-  // if (!date) {
-  //   date = new Date();
-  // }
-
-  const newUserId = await models.create(name, email, password, date);
+  const newUserId = await models.create(newUser);
 
   if (!newUserId) {
     return null;

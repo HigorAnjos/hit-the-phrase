@@ -1,7 +1,7 @@
 const connection = require('../connection');
 
 const list = async () => {
-  const query = 'SELECT * FROM tipos;';
+  const query = 'SELECT * FROM Bundles;';
 
   const [phrases] = await connection.execute(query);
 

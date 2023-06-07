@@ -1,30 +1,52 @@
 const bcrypt = require('bcrypt');
 const services = require('../../services/user/index');
+const User = require('../../Entities/user');
 
 const create = async (req, res) => {
   const {
-    name, email, password, date,
+    firstName,
+    lastName,
+    nickName,
+    birthDate,
+    email,
+    password,
+    gender,
+    avatar,
   } = req.body;
 
-  if (!name || !email || !password || !date) {
+  if (!firstName || !email || !password || !birthDate) {
     return res.status(400).json({
       message: 'Dados incompletos',
     });
   }
-  // crypto password
-  const passwordCrypt = await bcrypt.hash(password, 10);
 
-  // create user
-  const isOk = await services.create(name, email, passwordCrypt, date);
+  // Criptografar a senha
+  const passwordHash = await bcrypt.hash(password, 10);
 
-  if (!isOk) {
+  // Criar instância do usuário
+  const user = new User(
+    firstName,
+    lastName,
+    nickName,
+    birthDate,
+    email,
+    passwordHash,
+    gender,
+    avatar,
+  );
+
+  // Criar usuário
+  const isCreated = await services.create(user);
+
+  if (!isCreated) {
     return res.status(400).json({
       message: 'Erro ao criar usuário',
     });
   }
-  // eslint-disable-next-line no-console
-  console.log(`requret from ${name}`);
-  return res.status(201).json({ id: isOk });
+
+  console.log(`Requisição de ${user.firstName}`);
+
+  return res.status(201).json({ id: isCreated });
 };
 
 module.exports = create;

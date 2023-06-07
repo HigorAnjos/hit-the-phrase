@@ -32,6 +32,8 @@ const login = async (req, res) => {
     email: userCanLogin.email,
     name: userCanLogin.nome,
     dateOfBirth: userCanLogin.nascimento,
+    avatar: userCanLogin.avatar, // TODO: verificar
+    nickname: userCanLogin.nickname, // TODO: verificar
   };
 
   const token = jwt.sign({ data: userWithoutPassword }, API_SECRET, JWT_CONFIG);
